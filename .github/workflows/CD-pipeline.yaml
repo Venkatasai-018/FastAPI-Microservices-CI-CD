@@ -22,7 +22,7 @@ jobs:
     
     - name: Verify deployment
       run: |
-        kubectl rollout status deployment/fastapi-v1 -n fastapi-v1
+        kubectl rollout status deployment/fastapi-v1 -n fastapi
         echo "Checking pods status ..."
         kubectl get pods -n fastapi
         echo "Checking service status ..."
