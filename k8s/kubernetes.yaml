@@ -25,7 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fastapi-v1-service
-  namespace: fastapi-v1
+  namespace: fastapi
 spec:
   type: NodePort
   selector:
