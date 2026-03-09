@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: fastapi-v1
-        image: fastapi-app-v1:latest
+        image: karthikcodes/fastapi-app-v1:latest
         ports:
         - containerPort: 8000
 ---
@@ -26,7 +26,7 @@ kind: Service
 metadata:
   name: fastapi-v1-service
   namespace: fastapi-v1
-sepc:
+spec:
   type: NodePort
   selector:
     app: fastapi-v1
