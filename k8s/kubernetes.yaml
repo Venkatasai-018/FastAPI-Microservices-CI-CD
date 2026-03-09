@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-v1
+  namespace: fastapi-v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fastapi-v1
+  template:
+    metadata:
+      labels:
+        app: fastapi-v1
+    spec:
+      containers:
+      - name: fastapi-v1
+        image: karthikcodes/fastapi-app-v1:latest
+        ports:
+        - containerPort: 8000
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-v1-service
+  namespace: fastapi-v1
+spec:
+  type: NodePort
+  selector:
+    app: fastapi-v1
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+    nodePort: 30001
+---

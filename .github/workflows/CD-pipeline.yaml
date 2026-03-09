@@ -1,0 +1,36 @@
+name: FastAPI CD Pipeline
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v6
+      with:
+        ref: feat/1
+    
+
+
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl apply -f k8s/kubernetes.yaml
+    
+    - name: Verify deployment
+      run: |
+        kubectl rollout status deployment/fastapi-v1 -n fastapi-v1
+        echo "Checking pods status ..."
+        kubectl get pods -n fastapi-v1
+        echo "Checking service status ..."
+        kubectl get svc -n fastapi-v1
+        echo "Testing API endpoint ..."
+        curl -s http://localhost:30001/ | jq . 
+        echo "API endpoint test completed."
+        echo "CD pipeline execution completed successfully."
+
+        echo "node port ip 3001"
+        kubectl get nodes -o wide | grep -E 'NAME|Ready'
