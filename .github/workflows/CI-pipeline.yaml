@@ -1,0 +1,36 @@
+name: Demo workflows
+
+on:
+  
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+  
+  
+jobs:
+  build:
+    runs-on: aws-linux
+
+
+    steps:
+    - name: Check out code
+    - uses: actions/checkout@v6
+      with:
+        ref: feat/1
+    
+    - name: docker build for v1
+      run: |
+        docker build -t fastapi-app-v1 -f app-v1/Dockerfile .
+    
+    - name: docker build for v2
+      run: |
+        docker build -t fastapi-app-v2 -f app-v2/Dockerfile .
+    
+
+    - name: Run the docker image for v1
+      run: |
+        docker run -d -p 8000:8000 --name fastapi-app-v1-container fastapi-app-v1
+
+    
+    
+    
