@@ -10,8 +10,8 @@ jobs:
 
 
     steps:
-    
-    - uses: actions/checkout@v6
+    - name: Check out code
+      uses: actions/checkout@v6
       with:
         ref: feat/1
     
