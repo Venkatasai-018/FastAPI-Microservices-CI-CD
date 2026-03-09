@@ -38,5 +38,5 @@ jobs:
 
     - name: Run the docker image for v2
       run: |
-        docker run -d -p 8001:8000 --name fastapi-app-v2-container fastapi-app-v2
+        docker run -d -p 8001:8001 --name fastapi-app-v2-container fastapi-app-v2
 
