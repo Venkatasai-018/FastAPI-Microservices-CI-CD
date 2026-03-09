@@ -27,7 +27,7 @@ metadata:
   name: fastapi-v1-service
   namespace: fastapi
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: fastapi-v1
   ports:
