@@ -24,9 +24,9 @@ jobs:
       run: |
         kubectl rollout status deployment/fastapi-v1 -n fastapi-v1
         echo "Checking pods status ..."
-        kubectl get pods -n fastapi-v1
+        kubectl get pods -n fastapi
         echo "Checking service status ..."
-        kubectl get svc -n fastapi-v1
+        kubectl get svc -n fastapi
         echo "Testing API endpoint ..."
         curl -s http://localhost:30001/ | jq . 
         echo "API endpoint test completed."
